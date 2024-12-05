@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import parkingData from "./data.json";
 
 const ParkingDemo = () => {
   const [plateNumber, setPlateNumber] = useState('');
@@ -9,6 +10,10 @@ const ParkingDemo = () => {
     'City Mall Garage': Array(12).fill(null),
     'Office Tower Parking': Array(9).fill(null),
   });
+
+  useEffect(() => {
+    setParkingLots(parkingData);
+  }, []);
 
   const handlePark = () => {
     const updatedParkingLots = { ...parkingLots };
@@ -26,6 +31,7 @@ const ParkingDemo = () => {
     }
 
     if (parked) {
+      //todo send post request to server
       setParkingLots(updatedParkingLots);
       setPlateNumber('');
     } else {
@@ -34,13 +40,19 @@ const ParkingDemo = () => {
   };
 
   const handleFetch = async () => {
-    try {
-      const response = await axios.post('http://localhost:8080/api/parking/fetch', { plateNumber });
-      const fetchedData = response.data;
-      setParkingLots(fetchedData);
-    } catch (error) {
-      console.error('Error fetching parking data:', error);
+    const updatedParkingLots = { ...parkingLots };
+    for (const lot in parkingData) {
+      updatedParkingLots[lot] = parkingData[lot].map(plate => plate === plateNumber ? null : plate);
     }
+    setParkingLots(updatedParkingLots);
+    // try {
+    //   //todo send get request to server
+    //   const response = await axios.post('http://localhost:8080/api/parking/fetch', { plateNumber });
+    //   const fetchedData = response.data;
+    //   setParkingLots(fetchedData);
+    // } catch (error) {
+    //   console.error('Error fetching parking data:', error);
+    // }
   };
 
   return (

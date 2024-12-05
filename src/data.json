@@ -1,0 +1,5 @@
+{
+  "The Plaza Park": [null, "ABC123", null, null, null, null, null, null, null],
+  "City Mall Garage": [null, null, "XYZ789", null, null, null, null, null, null, null, null, null],
+  "Office Tower Parking": [null, null, null, null, "LMN456", null, null, null, null]
+}
