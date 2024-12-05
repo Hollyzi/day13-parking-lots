@@ -12,7 +12,11 @@ const ParkingDemo = () => {
   });
 
   useEffect(() => {
-    setParkingLots(parkingData);
+    const formattedParkingData = {};
+    for (const lot in parkingData) {
+      formattedParkingData[lot] = parkingData[lot].map((car) => car ? car.plateNumber : null);
+    }
+    setParkingLots(formattedParkingData);
   }, []);
 
   const handlePark = () => {
@@ -42,7 +46,7 @@ const ParkingDemo = () => {
   const handleFetch = async () => {
     const updatedParkingLots = { ...parkingLots };
     for (const lot in parkingData) {
-      updatedParkingLots[lot] = parkingData[lot].map(plate => plate === plateNumber ? null : plate);
+      updatedParkingLots[lot] = parkingData[lot].map((car) => car && car.plateNumber === plateNumber ? null : car ? car.plateNumber : null);
     }
     setParkingLots(updatedParkingLots);
     // try {

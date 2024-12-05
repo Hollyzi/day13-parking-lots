@@ -1,5 +1,44 @@
 {
-  "The Plaza Park": [null, "ABC123", null, null, null, null, null, null, null],
-  "City Mall Garage": [null, null, "XYZ789", null, null, null, null, null, null, null, null, null],
-  "Office Tower Parking": [null, null, null, null, "LMN456", null, null, null, null]
+  "The Plaza Park": [
+    null,
+    {
+      "plateNumber": "ABC-123"
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "City Mall Garage": [
+    null,
+    null,
+    {
+      "plateNumber": "XYZ-789"
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Office Tower Parking": [
+    null,
+    null,
+    null,
+    null,
+    {
+      "plateNumber": "LMN-456"
+    },
+    null,
+    null,
+    null,
+    null
+  ]
 }
