@@ -21,6 +21,9 @@ export const ParkingProvider = ({ children }) => {
         const formattedParkingData = {};
         for (const lot in parkingData) {
           formattedParkingData[lot] = parkingData[lot].map((car) => car ? car.plateNumber : null);
+          while (formattedParkingData[lot].length < parkingLots[lot].length) {
+            formattedParkingData[lot].push(null);
+          }
         }
         setParkingLots(formattedParkingData);
       } catch (error) {
