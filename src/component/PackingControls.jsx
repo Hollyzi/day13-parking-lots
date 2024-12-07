@@ -36,13 +36,15 @@ const ParkingControls = () => {
             const entryTime = new Date(fetchedData.entryTime).toISOString().slice(0, 16).replace('T', ' ');
             const exitTime = new Date(fetchedData.exitTime).toISOString().slice(0, 16).replace('T', ' ');
             const parkingDuration = fetchedData.parkingDuration;
-            alert(`Entry Time: ${entryTime}\nExit Time: ${exitTime}\nParking Duration: ${parkingDuration}`);
+            const {parkingFees} = fetchedData;
+            alert(`Entry Time: ${entryTime}\nExit Time: ${exitTime}\nParking Duration: ${parkingDuration}\nParking Fees: ${parkingFees}`);
             for (const lot in updatedParkingLots) {
                 updatedParkingLots[lot] = updatedParkingLots[lot].map((car) => car === plateNumber ? null : car);
             }
             setParkingLots(updatedParkingLots);
         } catch (error) {
             console.error('Error fetching parking data:', error);
+            alert('Failed to fetch the car.'+error.response.data);
         }
     };
 
